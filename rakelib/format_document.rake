@@ -12,6 +12,7 @@ task :format_document, [:input_file_path] do |_, args|
   end
 
   form = WorkbookForm.new
-  DocxFormatter.new(input_file_path, output_file_path).call
+  DataProcessor.new(input_file_path, output_file_path).call
+
   logger.info('Transforming finished')
 end
