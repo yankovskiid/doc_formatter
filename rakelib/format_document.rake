@@ -31,7 +31,7 @@ task :format_test, [:input_file_path, :out_file_path] do |_, args|
     worksheet_name: 'Station Name',
     header_row: ['Plan', 'Zone', 'Zone (Area identified)', 'Details of zone', 'Guidance Notes'
     ],
-    header_offset: 2,
+    header_offset: 1,
     separators: /(?:\(.*?\)|[^,.])+/,
     word_separators: %w[and for ATG SCP DCS StationEntrance],
     empty_label: 'NA')
@@ -41,6 +41,6 @@ task :format_test, [:input_file_path, :out_file_path] do |_, args|
     abort
   end
 
-  DocFormatter::DataProcessor.new(input_file_path, form).call
+  DocFormatter::DataProcessor.new(input_file_path, form, out_file_path).call
   logger.info('Transforming finished')
 end
