@@ -11,9 +11,10 @@ module DocFormatter
     DOCX_FILE_EXTENSION_REGEX = /(\.docx)/
     XLSX_FILE_EXTENSION = ".xlsx"
 
-    def initialize(input_dir_path, form)
+    def initialize(input_dir_path, form, out_file_path)
       @input_dir_path = input_dir_path
       @form = form
+      @out_file_path = out_file_path
     end
 
     def call
@@ -24,15 +25,16 @@ module DocFormatter
         package = Axlsx::Package.new
         write_workbook(package, header, table_data)
 
-        filename = file.gsub(DOCX_FILE_EXTENSION_REGEX, XLSX_FILE_EXTENSION)
+        filename =  File.basename(file, '.*')
+        #filename = file.gsub(DOCX_FILE_EXTENSION_REGEX, XLSX_FILE_EXTENSION)
+        package.serialize([out_file_path, filename, XLSX_FILE_EXTENSION].join)
         #package.serialize(filename)
-        package.serialize(['./tmp/rm-central-test/test', XLSX_FILE_EXTENSION].join)
       end
     end
 
     private
 
-    attr_reader :input_dir_path, :form
+    attr_reader :input_dir_path, :form, :out_file_path, :out_file_path
 
     def parse_doc_file(file)
       DocxFileParser.new(file).call

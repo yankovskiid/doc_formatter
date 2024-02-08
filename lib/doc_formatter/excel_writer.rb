@@ -40,7 +40,8 @@ module DocFormatter
     def transform_data(table)
       table.drop(form.header_offset).map do |row|
         row.last.scan(form.separators).filter_map do |question|
-          next if question.strip.empty?
+          next if question.squish.strip.empty?
+          next if question.strip == 'N/A'
           next unless NUMERIC_CELL_REGEX.match(question.strip).nil?
 
           row[MAGIC_NUMBER_TWO] = capitalize_text(row[MAGIC_NUMBER_TWO])
