@@ -14,7 +14,8 @@ Gem::Specification.new do |spec|
   spec.summary = "Gem for formatting DOCX to XLSX"
   spec.description = "TBD"
   spec.homepage = "https://github.com/yankovskiid/doc_formatter"
-  spec.required_ruby_version = "~> 3.1.2"
+  spec.required_ruby_version = File.read('.ruby-version').strip
+
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/yankovskiid/doc_formatter"
