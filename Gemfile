@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "activesupport", "~> 7.0"
-gem "caxlsx", "~> 3.2"
+gem "caxlsx", "~> 4.1"
 gem "docx", "~> 0.7"
 gem "rake", "~> 13.0"
 
